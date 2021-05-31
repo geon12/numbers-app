@@ -1,17 +1,24 @@
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
+import './NavBar.css'
 
 function NavBar() {
+    const activeStyle={
+        fontWeight: "bold",
+        color: "red",
+        backgroundColor: "black"
+      }
+    
     return (
         <nav>
             <ul>
                 <li>
-                    <Link to='/'>Home</Link>
+                    <NavLink exact to='/' activeStyle={activeStyle}>Home</NavLink>
                 </li>
                 <li>
-                    <Link to='/prime-numbers'>Prime Numbers</Link>
+                    <NavLink exact to='/prime-numbers' activeStyle={activeStyle}>Prime Numbers</NavLink>
                 </li>
                 <li>
-                    <Link to='/todays-date'>Today's Date</Link>
+                    <NavLink exact to='/todays-date' activeStyle={activeStyle}>Today's Date</NavLink>
                 </li>
                 
             </ul>
