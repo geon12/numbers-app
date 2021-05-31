@@ -1,6 +1,13 @@
 import './App.css';
-import Header from './components/Header'
-import NumberContainer from './components/NumberContainer'
+import Home from './components/Home'
+import PrimeNumbers from './components/PrimeNumbers'
+import DateFact from './components/DateFact'
+import NavBar from './components/NavBar'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   /* 
@@ -18,8 +25,23 @@ function App() {
     
   return (
     <div className="App">
-      <Header />
-      <NumberContainer />
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route exact path='/prime-numbers'>
+            <PrimeNumbers />
+          </Route>
+          <Route exact path='/todays-date'>
+            <DateFact />
+          </Route>
+          <Route path="*">
+            <h1>404 Page Not Found</h1>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
