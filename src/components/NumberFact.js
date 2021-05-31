@@ -1,6 +1,9 @@
-function NumberFact() {
+function NumberFact({number, fact}) {
     return (
-        <div></div>
+        <div>
+            <h2>{number}: </h2>
+            <p>{fact}</p>
+        </div>
     )
 }
 
