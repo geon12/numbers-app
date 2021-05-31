@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import NumbersList from "./NumbersList"
+import NumbersForm from "./NumbersForm"
 
 function NumberContainer() {
     const [numberFacts, setNumberFacts] = useState({})
@@ -23,6 +24,15 @@ function NumberContainer() {
         return randomArray
     }
 
+    function handleRandomClick() {
+        fetch(`${BASE_URL}/random?json`)
+            .then(resp => resp.json())
+            .then(resp => {
+                setNumberFacts({...numberFacts,[resp.number]: resp.text})
+            }) 
+
+    }
+
     useEffect(() => {
         const randomNumbers = createRandomNumbersArr(5);
         let URL = `${BASE_URL}/${randomNumbers[0]}`;
@@ -33,8 +43,20 @@ function NumberContainer() {
             .then(resp => setNumberFacts(resp)) 
 
     },[])
+
+    function onNumberSubmit(number) {
+        fetch(`${BASE_URL}/${number}?json`)
+            .then(resp => resp.json())
+            .then(resp => {
+                setNumberFacts({...numberFacts,[resp.number]: resp.text})
+            }) 
+    }
     return (
-        <NumbersList numberFacts={numberFacts}/>
+        <div>
+            <NumbersForm onNumberSubmit={onNumberSubmit} />
+            <NumbersList numberFacts={numberFacts}/>
+            <button onClick={handleRandomClick}>Random Fact</button>
+        </div>
     )
 }
 
