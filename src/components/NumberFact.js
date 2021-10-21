@@ -1,4 +1,5 @@
 function NumberFact({number, fact}) {
+    
     return (
         <div>
             <h2>{number}: </h2>
